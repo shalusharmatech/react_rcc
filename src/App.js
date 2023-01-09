@@ -14,10 +14,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Routes>
+          {/* <Route path= "/test" element = {<Test></Test>}></Route>
+          <Route path= "/logOut" element = {<LogOut></LogOut>}></Route> */}
+          <Route path= "/" element = {<Login></Login>}></Route>
           <Route path= "/test" element = {<Test></Test>}></Route>
-          <Route path= "/logOut" element = {<LogOut></LogOut>}></Route>
-          {/* <Route path= "/" element = {<Login></Login>}></Route>
-          <Route path= "/logOut" element = {<LogOut></LogOut>}></Route>
+          {/* <Route path= "/logOut" element = {<LogOut></LogOut>}></Route>
           <Route path= "/home" element = {<ProtectedRoute roles={['admin', 'owner', 'user']} permissions={[]} ><HomeScreen></HomeScreen></ProtectedRoute>}></Route>
           <Route path= "*" element = {<PageNotFound></PageNotFound>}></Route> */}
         </Routes>

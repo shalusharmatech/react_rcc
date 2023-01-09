@@ -3,15 +3,20 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Snackbar from '@mui/material/Snackbar';
 import AuthAPI from "../Rest/AuthAPI";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import AuthService from "../settings/AuthUtils";
 
 
-// function Toyo() {
-//   const navigate = useNavigate();
-//   navigate("/");
-// }
+// // function Toyo() {
+// //   const navigate = useNavigate();
+// //   navigate("/");
+// // }
 
+// // Wrap and export
+// export default function(props) {
+//   const navigation = useNavigation();
+//   return <MyBackButton {...props} navigation={navigation} />;
+// }
 
 export default class Login extends Component {
   constructor(props) {
@@ -33,12 +38,14 @@ export default class Login extends Component {
     this.childCss = {
       margin: "5px",
     };
-    
+
     this.state = {
       username: "",
       password: "",
-      loginStatus: "" ,
-      snackbarStatus: false 
+      loginStatus: "",
+      snackbarStatus: false,
+      redirect: false,
+      redirectUrl:"/"
     };
   }
 
@@ -50,46 +57,59 @@ export default class Login extends Component {
     this.setState({ password: e.target.value });
   };
 
-  handleOnClick = async() => {
+
+  componentDidMount = () => {
+    console.log("I run");
+    // const navigate = useNavigate();
+    
+
+  }
+
+  handleOnClick = async () => {
     console.log("Login clicked");
     console.log(this.state.username);
     console.log(this.state.password);
 
     try {
-        const authAPI = new AuthAPI();
-        // const navigate = useNavigate();
-        const auth = new AuthService();
-        let response = await authAPI.authenticateUser(this.state.username, this.state.password);
-        if(response.status === 200){
-            console.log("Login Success");
-            console.log(response.data.token);
-            this.setState({snackbarStatus: true})
-            this.setState({loginStatus: "Login Success"});
+      const authAPI = new AuthAPI();
+      const auth = new AuthService();
+      let response = await authAPI.authenticateUser(this.state.username, this.state.password);
+      if (response.status === 200) {
+        console.log("Login Success");
+        console.log(response.data.token);
+        this.setState({ snackbarStatus: true })
+        this.setState({ loginStatus: "Login Success" });
 
-            auth.setApiKey(response.data.token);
-            console.log(auth.getApiKey());
+        auth.setApiKey(response.data.token);
+        console.log(auth.getApiKey());
 
-            auth.setUserRole(['admin']);
-            console.log(auth.getUserRole());
+        auth.setUserRole(['admin']);
+        console.log(auth.getUserRole());
 
-            auth.setUserPermission(['read_user']);
-            console.log(auth.getUserPermission());
+        auth.setUserPermission(['read_user']);
+        console.log(auth.getUserPermission());
+        
+        this.setState({ redirect: true, redirectUrl:"/test" });
+        return;
+      }
 
-            // navigate("/");
-            // Toyo();
-            return;
-        }
-
-    } catch(err) {
-        console.log(err)
+    } catch (err) {
+      console.log(err)
     }
     console.log("Login Failed");
-    this.setState({snackbarStatus: true})
-    this.setState({loginStatus: "Login Failed"})
+    this.setState({ snackbarStatus: true })
+    this.setState({ loginStatus: "Login Failed" })
   };
 
   render() {
+
+    const { redirect } = this.state;
+    if (redirect) {
+      return (<Navigate to={this.state.redirectUrl} />);
+    }
+
     return (
+
       <div style={this.mainCss}>
         <div style={this.formCss}>
           <div style={this.childCss}>
@@ -117,11 +137,11 @@ export default class Login extends Component {
             </Button>
           </div>
           <div>
-          <Snackbar
-            open={this.state.snackbarStatus}
-            autoHideDuration={2000}
-            message={this.state.loginStatus}
-          />
+            <Snackbar
+              open={this.state.snackbarStatus}
+              autoHideDuration={2000}
+              message={this.state.loginStatus}
+            />
           </div>
         </div>
       </div>

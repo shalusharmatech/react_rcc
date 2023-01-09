@@ -1,12 +1,19 @@
 import AuthService from '../settings/AuthUtils'
-import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+import React, { Component } from 'react'
 
-export default class LogOut {
-    constructor(){
+export default class Logout extends Component {
+
+    constructor(props){
+        super(props);
         const auth = new AuthService();
-        const navigate = new useNavigate();
         auth.logOut();
-        navigate("/");
     }
+
+  render() {
+    return (
+        <Navigate to="/" />
+    )
+  }
 }
 

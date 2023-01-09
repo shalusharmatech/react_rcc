@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from "./logo.svg";
+import "./App.css";
+import React, { Component } from 'react';
+import Login from "./components/Login";
+import LogOut from "./components/LogOut";
+import HomeScreen from "./components/HomeScreen";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+import PageNotFound from "./components/PageNotFound";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Test from "./Test";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path= "/test" element = {<Test></Test>}></Route>
+          <Route path= "/logOut" element = {<LogOut></LogOut>}></Route>
+          {/* <Route path= "/" element = {<Login></Login>}></Route>
+          <Route path= "/logOut" element = {<LogOut></LogOut>}></Route>
+          <Route path= "/home" element = {<ProtectedRoute roles={['admin', 'owner', 'user']} permissions={[]} ><HomeScreen></HomeScreen></ProtectedRoute>}></Route>
+          <Route path= "*" element = {<PageNotFound></PageNotFound>}></Route> */}
+        </Routes>
+      </BrowserRouter>
+    )
+  }
 }
 
 export default App;

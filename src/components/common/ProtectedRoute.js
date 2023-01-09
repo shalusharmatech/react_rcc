@@ -1,43 +1,57 @@
-// import React, { Children, Component } from 'react'
-// import AuthService from '../../settings/AuthUtils'
-// import { Navigate } from 'react-router-dom';
+import React, { Children, Component } from 'react'
+import AuthService from '../../settings/AuthUtils'
+import { Navigate } from 'react-router-dom';
 
-// export default class ProtectedRoute extends Component {
-//   constructor(props){
-//     super(props)
-//     const auth = new AuthService();
-//   }
+export default class ProtectedRoute extends Component {
+    constructor(props) {
+        super(props)
+        this.children = props.children;
+        this.roles = props.roles;
+        this.permissions = props.permissions;
+    }
 
 
-//   if (!auth.isAuthenticated()){
-//     console.log("User not autheticated");
-//     <Navigate to ="/" replace></Navigate>
-//   }
+    render() {
+        const auth = new AuthService();
 
-//   hasRequiredRole = false;
+        if (!auth.isAuthenticated()) {
+            console.log("User not autheticated. Navigating to Login.");
+            return <Navigate to="/" replace></Navigate>
+        }
 
-//   roles.forEach(function (role) {
-//     if(auth.getUserRole().includes(role)){
-//       hasRequiredRole = true;
-//     }
-//   });
 
-//   if (!hasRequiredRole){
-//     console.log("No Role");
-//     <Navigate to="/" replace></Navigate>
-//   }
+        let hasRequiredRole = false;
 
-//   hasRequiredPermission = false;
+        this.roles.forEach(function (role) {
+            if (auth.getUserRole().includes(role)) {
+                hasRequiredRole = true;
+            }
+        });
 
-//   if (permissions.length === 0){
-//     hasRequiredPermission = true;
-//   }
+        if (!hasRequiredRole) {
+            console.log("User doesn't have required `ROLE` for this component, navigating to Login.");
+            return <Navigate to="/" replace></Navigate>
+        }
 
-//   permissions.forEach(function(permission){
-//     if(auth.getUserPermission().includes(permission)){
-//       hasRequiredPermission = true;
-//     }
-//   }
+        
+        let hasRequiredPermission = false;
 
-//   return children;
-// }
+        if (this.permissions.length === 0) {
+            hasRequiredPermission = true;
+        }
+
+        this.permissions.forEach(function (permission) {
+            if (auth.getUserPermission().includes(permission)) {
+                hasRequiredPermission = true;
+            }
+        });
+        
+        if (!hasRequiredPermission) {
+            console.log("User doesn't have required `PERMISSIONS` for this component, navigating to Login.");
+            return <Navigate to="/" replace></Navigate>
+        }
+
+        console.log("User have required `ROLE` and `PERMISSIONS` for this component.");
+        return this.children;
+    }
+}

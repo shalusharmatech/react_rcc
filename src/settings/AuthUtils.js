@@ -6,7 +6,7 @@ export default class AuthService{
         localStorage.setItem("api_Key", apiKey);
     }
 
-   getApiKey(){
+    getApiKey(){
         return localStorage.getItem("api_Key");
     }
 
@@ -27,7 +27,7 @@ export default class AuthService{
     }
 
     isAuthenticated(){
-        if(localStorage.getApiKey != null){
+        if(localStorage.getItem("api_Key") != null){
             return true;
         }
         return false;

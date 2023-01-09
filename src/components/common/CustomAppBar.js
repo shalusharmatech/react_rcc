@@ -4,22 +4,29 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default class CustomAppBar extends Component {
   constructor(props) {
     super(props);
     // this.myNav = useNavigate();
+    this.state = {
+      redirect: false,
+      redirectUrl:"/"
+    };
   }
 
-  //   navigate = async () => {
-  //     // console.log(path);
-  //     // console.log("dfsfdfd");
-  //     const navigate = useNavigate();
-  //     // navigate("/logOut");
-  //   }
+  handleOnClickLogout = () => {
+    this.setState({ redirect: true, redirectUrl:"/logout" });
+  }
 
   render() {
+
+    const { redirect } = this.state;
+    if (redirect) {
+      return (<Navigate to={this.state.redirectUrl} />);
+    }
+
     return (
       <Box sx={{ display: "flex" }}>
         <AppBar
@@ -32,7 +39,7 @@ export default class CustomAppBar extends Component {
                 Curefy/Sourc
               </Typography>
             </div>
-            <Button color="inherit">LogOut</Button>
+            <Button color="inherit" onClick={this.handleOnClickLogout}>LogOut</Button>
           </Toolbar>
         </AppBar>
       </Box>

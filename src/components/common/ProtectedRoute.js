@@ -7,7 +7,7 @@
 //     super(props)
 //     const auth = new AuthService();
 //   }
-  
+
 
 //   if (!auth.isAuthenticated()){
 //     console.log("User not autheticated");

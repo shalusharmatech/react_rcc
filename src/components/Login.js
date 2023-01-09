@@ -60,9 +60,6 @@ export default class Login extends Component {
 
   componentDidMount = () => {
     console.log("I run");
-    // const navigate = useNavigate();
-    
-
   }
 
   handleOnClick = async () => {
@@ -89,7 +86,7 @@ export default class Login extends Component {
         auth.setUserPermission(['read_user']);
         console.log(auth.getUserPermission());
         
-        this.setState({ redirect: true, redirectUrl:"/test" });
+        this.setState({ redirect: true, redirectUrl:"/home" });
         return;
       }
 

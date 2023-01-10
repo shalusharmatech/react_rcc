@@ -100,8 +100,8 @@ export default class Login extends Component {
 
   render() {
 
-    const { redirect } = this.state;
-    if (redirect) {
+    //const { redirect } = this.state;
+    if (this.state.redirect) {
       return (<Navigate to={this.state.redirectUrl} />);
     }
 

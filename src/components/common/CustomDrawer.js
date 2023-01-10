@@ -10,6 +10,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { Navigate } from 'react-router-dom';
 
 
 export default class CustomDrawer extends Component {
@@ -23,7 +24,7 @@ export default class CustomDrawer extends Component {
             ["Chat", "/chat"],
             ["Active orders", "/active-orders"],
             ["Pending orders", "/pending-orders"],
-            ["Upload Records", "upload-records"],
+            ["Upload Records", "/upload-records"],
             ["User Management", "user-management"],
             ["Search Products", "/search-products"]
         ]
@@ -33,9 +34,35 @@ export default class CustomDrawer extends Component {
             ["Trash" , "/trash"],
             ["Spam" , "/spam"]
         ]
+
+        // this.state={
+        //   redirect: false,
+        //   redirectURL : ""
+        // };
     }
 
+    // handleOnClick1 = (i) => {
+      
+    //   let url1 = this.itemNames1[i][1];
+    //   console.log(url1);
+    //   this.setState({ redirect: true, redirectUrl: url1 });      
+    // };
+
+    // handleonClick2 = (i) => {
+    //   let url2 = this.itemNames2[i][1]
+    //   this.setState({redirect: true, redirectURL: url2})
+    // }
+
   render() {
+    // console.log(this.state);
+    // if (this.state.redirect){
+    //   // console.log("Inside...")
+    //   // return (<Navigate to = {this.state.redirectURL} />)
+    //   let ddd =this.state.redirectURL;
+    //   console.log(ddd);
+    //   return (<Navigate replace to = {ddd} />)
+    // }
+
     return (
         <Drawer
         variant="permanent"
@@ -48,11 +75,11 @@ export default class CustomDrawer extends Component {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {this.itemNames1.map((text, index) => (
-              <ListItem key={text} disablePadding>
+            {this.itemNames1.map((text,i) => (
+              <ListItem key={text} disablePadding onClick={e => this.handleOnClick1(i)}>
                 <ListItemButton>
                   <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    {i % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text[0]} />
                 </ListItemButton>
@@ -61,11 +88,11 @@ export default class CustomDrawer extends Component {
           </List>
           <Divider />
           <List>
-            {this.itemNames2.map((text, index) => (
-              <ListItem key={text[0]} disablePadding>
+            {this.itemNames2.map((text, i) => (
+              <ListItem key={text[0]} disablePadding onClick={e => this.handleonClick2(i)} >
                 <ListItemButton>
                   <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    {i % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text[0]} />
                 </ListItemButton>

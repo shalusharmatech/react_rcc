@@ -7,17 +7,6 @@ import { useNavigate, Navigate } from "react-router-dom";
 import AuthService from "../settings/AuthUtils";
 
 
-// // function Toyo() {
-// //   const navigate = useNavigate();
-// //   navigate("/");
-// // }
-
-// // Wrap and export
-// export default function(props) {
-//   const navigation = useNavigation();
-//   return <MyBackButton {...props} navigation={navigation} />;
-// }
-
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -71,6 +60,7 @@ export default class Login extends Component {
       const authAPI = new AuthAPI();
       const auth = new AuthService();
       let response = await authAPI.authenticateUser(this.state.username, this.state.password);
+      console.log(response);
       if (response.status === 200) {
         console.log("Login Success");
         console.log(response.data.token);
@@ -87,6 +77,8 @@ export default class Login extends Component {
         console.log(auth.getUserPermission());
         
         this.setState({ redirect: true, redirectUrl:"/home" });
+
+        console.log("CCCCCCCCCCCCC -22");
         return;
       }
 
@@ -102,7 +94,8 @@ export default class Login extends Component {
 
     const { redirect } = this.state;
     if (redirect) {
-      return (<Navigate to={this.state.redirectUrl} />);
+      console.log("I run Navigate.")
+      return (<Navigate to={this.state.redirectUrl} data-testid="navigate-home"/>);
     }
 
     return (
@@ -117,6 +110,7 @@ export default class Login extends Component {
               required
               id="outlined-required"
               label="Username"
+              inputProps={{ "data-testid": "textfield-username" }}
               onChange={(e) => this.handleUsername(e)}
             />
           </div>
@@ -125,11 +119,12 @@ export default class Login extends Component {
               required
               id="outlined-required"
               label="Password"
+              inputProps={{ "data-testid": "textfield-password" }}
               onChange={(e) => this.handlePassword(e)}
             />
           </div>
           <div style={this.childCss}>
-            <Button variant="contained" onClick={this.handleOnClick}>
+            <Button variant="contained" onClick={this.handleOnClick} data-testid="button-login">
               Sign In
             </Button>
           </div>
@@ -138,6 +133,7 @@ export default class Login extends Component {
               open={this.state.snackbarStatus}
               autoHideDuration={2000}
               message={this.state.loginStatus}
+              data-testid="snackbar-status"
             />
           </div>
         </div>

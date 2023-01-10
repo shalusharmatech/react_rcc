@@ -26,7 +26,7 @@ export default class CustomDrawer extends Component {
             ["Pending orders", "/pending-orders"],
             ["Upload Records", "/upload-records"],
             ["User Management", "user-management"],
-            ["Search Products", "/search-products"]
+            ["Search Products", "search-products"]
         ]
     
         this.itemNames2 = [
@@ -35,33 +35,29 @@ export default class CustomDrawer extends Component {
             ["Spam" , "/spam"]
         ]
 
-        // this.state={
-        //   redirect: false,
-        //   redirectURL : ""
-        // };
+        this.state={
+          redirect: false
+        };
+
+        this.redirectURL = "/";
     }
 
-    // handleOnClick1 = (i) => {
-      
-    //   let url1 = this.itemNames1[i][1];
-    //   console.log(url1);
-    //   this.setState({ redirect: true, redirectUrl: url1 });      
-    // };
+    handleOnClick1 = (i) => {
+      let url = this.itemNames1[i][1];
+      this.redirectURL = url;
+      this.setState({ redirect: true });      
+    };
 
-    // handleonClick2 = (i) => {
-    //   let url2 = this.itemNames2[i][1]
-    //   this.setState({redirect: true, redirectURL: url2})
-    // }
+    handleonClick2 = (i) => {
+      let url = this.itemNames2[i][1];
+      this.redirectURL = url;
+      this.setState({ redirect: true });     
+    }
 
   render() {
-    // console.log(this.state);
-    // if (this.state.redirect){
-    //   // console.log("Inside...")
-    //   // return (<Navigate to = {this.state.redirectURL} />)
-    //   let ddd =this.state.redirectURL;
-    //   console.log(ddd);
-    //   return (<Navigate replace to = {ddd} />)
-    // }
+    if (this.state.redirect){
+      return (<Navigate replace to = {this.redirectURL} />)
+    }
 
     return (
         <Drawer

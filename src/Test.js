@@ -10,13 +10,13 @@ import SearchProducts from './components/SearchProducts'
 export default class Test extends Component {
   render() {
     return (
-      <SearchProducts></SearchProducts>
+      // <SearchProducts></SearchProducts>
       //<Chat></Chat>
       //<Products></Products>
       //<Login/>
-      //<WithAppBar />
-      //<CustomAppBar></CustomAppBar>
-      //<CustomDrawer></CustomDrawer>
+      <WithAppBar />
+      // <CustomAppBar></CustomAppBar>
+      // <CustomDrawer></CustomDrawer>
     )
   }
 }

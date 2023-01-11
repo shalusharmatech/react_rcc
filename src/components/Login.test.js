@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axiosMock from "axios";
 
-describe.only('Testing Login Component', () => {
+describe('Testing Login Component', () => {
 
   beforeEach(() => {
     console.log("Before Each I run.");
@@ -36,16 +36,15 @@ describe.only('Testing Login Component', () => {
 
   it('should update password on type.', () => {
     render(<Login />);
-    const usernameTextfield = screen.getByTestId("textfield-password");
-    fireEvent.change(usernameTextfield, { target: { value: "mango" } });
-    expect(usernameTextfield.value).toBe("mango");
+    const passwordTextfield = screen.getByTestId("textfield-password");
+    fireEvent.change(passwordTextfield, { target: { value: "mango" } });
+    expect(passwordTextfield.value).toBe("mango");
   });
 
 
   it('should Login successfully and Navigate to `/home.`', async () => {
 
     axiosMock.post.mockResolvedValueOnce({ data: { token: "dummy_api_token" }, status: 200 });
-
 
     const Main = () => <h1>dummy_home</h1>;
     render(

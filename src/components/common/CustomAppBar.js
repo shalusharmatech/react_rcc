@@ -22,8 +22,7 @@ export default class CustomAppBar extends Component {
 
   render() {
 
-    const { redirect } = this.state;
-    if (redirect) {
+    if (this.state.redirect) {
       return (<Navigate to={this.state.redirectUrl} />);
     }
 

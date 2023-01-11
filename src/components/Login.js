@@ -92,10 +92,9 @@ export default class Login extends Component {
 
   render() {
 
-    const { redirect } = this.state;
-    if (redirect) {
-      console.log("I run Navigate.")
-      return (<Navigate to={this.state.redirectUrl} data-testid="navigate-home"/>);
+    //const { redirect } = this.state;
+    if (this.state.redirect) {
+      return (<Navigate to={this.state.redirectUrl} />);
     }
 
     return (

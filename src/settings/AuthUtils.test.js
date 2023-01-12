@@ -17,7 +17,7 @@ describe.only('Testing AuthUtils Settings', () => {
         expect(authService.getApiKey()).toBe(dummyApiKey);
     });
 
-    it.only('should test isAuthenticated() method.', () => {
+    it('should test isAuthenticated() method.', () => {
         const authService = new AuthService();
         expect(authService.isAuthenticated()).toBe(false);
 
@@ -29,21 +29,21 @@ describe.only('Testing AuthUtils Settings', () => {
     /**
         @todo: Write test for Permissions.
     **/
-    it.only('should set and get permissions.', () => {
+    it('should set and get permissions.', () => {
         expect(true).toBe(true);
     });
 
     /**
         @todo: Write test for Role.
     **/
-    it.only('should set and get permissions.', () => {
+    it('should set and get permissions.', () => {
         expect(true).toBe(true);
     });
 
     /**
        @todo: Write test for Role.
     **/
-    it.only('should test logout() method.', () => {
+    it('should test logout() method.', () => {
         expect(true).toBe(true);
     });
 

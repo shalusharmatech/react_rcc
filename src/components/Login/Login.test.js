@@ -73,7 +73,7 @@ describe("Testing Login Component", () => {
         });
     });
 
-    it.only("should fail login and display message on snackbar", async() => {
+    it("should fail login and display message on snackbar", async() => {
         axiosMock.post.mockResolvedValueOnce({data:{}, status: 400});
 
         render(<Login />);

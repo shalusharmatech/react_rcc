@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Pagination } from "@mui/material";
 
-import ProductsAPI from "./ProductsAPI";
+import * as productUtils from "./ProductUtils";
 
 export default class Products extends Component {
   constructor() {
@@ -28,27 +28,9 @@ export default class Products extends Component {
   };
 
   fetchData = async (pagenumber) => {
-    try {
-      let skip = (pagenumber - 1) * this.limit;
-      const prod = new ProductsAPI();
-      const response = await prod.getProducts({
-        limit: this.limit,
-        skip: skip,
-        select: "title,description,brand",
-      });
-      console.log(response);
-
-      if (response.status === 200) {
-        console.log(response.data);
-        this.setState({ products: response.data.products });
-        this.setState({
-          totalPages: Math.ceil(response.data.total / this.limit),
-        });
-        console.log("Shalu best");
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    const result = await productUtils.getProductsData(pagenumber, this.limit);
+    console.log(result);
+    this.setState({ products: result.products, totalPages: result.totalPages });
   };
 
   componentDidMount = () => {
@@ -61,10 +43,10 @@ export default class Products extends Component {
   render() {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <List sx={{ width: "100%", bgcolor: "background.paper" }} data-testid = "list-products-id">
+        <List sx={{ width: "100%", bgcolor: "background.paper" }} data-testid="list-products-id">
           {this.state.products.map((e, i) => (
             <div key={i}>
-              <ListItem alignItems="flex-start" data-testid = "list-items-id">
+              <ListItem alignItems="flex-start" data-testid="list-items-id">
                 <ListItemAvatar>
                   <Avatar alt="Remy Sharp" src={e.thumbnail} />
                 </ListItemAvatar>
@@ -93,7 +75,7 @@ export default class Products extends Component {
           count={this.state.totalPages}
           color="primary"
           onChange={(e) => this.renderProducts(e.target.textContent)}
-          data-testid = "pagination-id"
+          data-testid="pagination-id"
         ></Pagination>
       </div>
     );

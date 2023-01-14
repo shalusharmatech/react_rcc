@@ -27,7 +27,7 @@
     "start": "react-scripts start",
     "free_start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "build": "react-scripts build",
-    "test": "DISABLE_ESLINT_PLUGIN=true react-scripts test",
+    "test": "DISABLE_ESLINT_PLUGIN=true react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

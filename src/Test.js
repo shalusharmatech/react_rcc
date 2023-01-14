@@ -6,15 +6,18 @@ import WithAppBar from './components/common/WithAppBar'
 import Products from './components/Products'
 import Chat from './components/Chat'
 import SearchProducts from './components/SearchProducts'
+import DisplayProduct from './components/DisplayProduct'
 
 export default class Test extends Component {
   render() {
     return (
-      // <SearchProducts></SearchProducts>
+
+      //<SearchProducts></SearchProducts>
+      <DisplayProduct></DisplayProduct>
       //<Chat></Chat>
       //<Products></Products>
       //<Login/>
-      <WithAppBar />
+      //<WithAppBar />
       // <CustomAppBar></CustomAppBar>
       // <CustomDrawer></CustomDrawer>
     )

@@ -36,7 +36,7 @@ export default class Products extends Component {
         skip: skip,
         select: "title,description,brand",
       });
-      // console.log(response);
+      console.log(response);
 
       if (response.status === 200) {
         console.log(response.data);
@@ -44,6 +44,7 @@ export default class Products extends Component {
         this.setState({
           totalPages: Math.ceil(response.data.total / this.limit),
         });
+        console.log("Shalu best");
       }
     } catch (err) {
       console.log(err);
@@ -60,10 +61,10 @@ export default class Products extends Component {
   render() {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+        <List sx={{ width: "100%", bgcolor: "background.paper" }} data-testid = "list-products-id">
           {this.state.products.map((e, i) => (
             <div key={i}>
-              <ListItem alignItems="flex-start">
+              <ListItem alignItems="flex-start" data-testid = "list-items-id">
                 <ListItemAvatar>
                   <Avatar alt="Remy Sharp" src={e.thumbnail} />
                 </ListItemAvatar>
@@ -92,6 +93,7 @@ export default class Products extends Component {
           count={this.state.totalPages}
           color="primary"
           onChange={(e) => this.renderProducts(e.target.textContent)}
+          data-testid = "pagination-id"
         ></Pagination>
       </div>
     );

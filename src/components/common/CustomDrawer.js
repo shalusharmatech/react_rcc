@@ -40,6 +40,22 @@ export default class CustomDrawer extends Component {
         };
 
         this.redirectURL = "/";
+
+        console.log("The state is :");
+        console.log(this.state.redirect)
+        console.log("I'm in Constructor.");
+
+    }
+
+    componentDidMount = () => {
+      console.log("I'm in Mount.");
+    }
+
+    componentDidUpdate = () => {
+      console.log("I'm in Update.");
+      // if (this.state.redirect){
+      //   this.setState({ redirect: false });    
+      // } 
     }
 
     handleOnClick1 = (i) => {
@@ -56,9 +72,11 @@ export default class CustomDrawer extends Component {
 
   render() {
     if (this.state.redirect){
+      console.log("I am TRUE");
       return (<Navigate replace to = {this.redirectURL} />)
     }
-
+    console.log("I am FALSE");    
+    
     return (
         <Drawer
         variant="permanent"

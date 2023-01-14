@@ -7,8 +7,9 @@ import CustomDrawer from './CustomDrawer';
 
 
 export default class WithAppBar extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        this.children = props.children;
     }
   render() {
     return (
@@ -18,7 +19,7 @@ export default class WithAppBar extends Component {
               <CustomDrawer />
               <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <Toolbar />
-                {/* {children} */}
+                {this.children}
               </Box>
             </Box>
           );

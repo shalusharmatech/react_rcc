@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
-import ProductsAPI from '../Rest/ProductsAPI';
+import ChatAPI from './ChatAPI';
 
 export default class Chat extends Component {
     constructor(){
@@ -41,7 +41,7 @@ export default class Chat extends Component {
     async fetchData(){
         try{
             let skip = this.state.products.length;
-            const prod = new ProductsAPI();
+            const prod = new ChatAPI();
             let response = await prod.getProducts({limit: this.limit, skip: skip, select:"title,brand,descrition,thumbnail"});
             if (response.status == 200){
                 console.log(response);

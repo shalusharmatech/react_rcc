@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Pagination } from "@mui/material";
 
-import ProductsAPI from "../Rest/ProductsAPI";
+import ProductsAPI from "./ProductsAPI";
 
 export default class Products extends Component {
   constructor() {

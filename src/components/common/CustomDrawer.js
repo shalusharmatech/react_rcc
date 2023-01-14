@@ -22,11 +22,12 @@ export default class CustomDrawer extends Component {
         this.itemNames1 = [
             ["Products", "/products"],
             ["Chat", "/chat"],
+            ["Search Products", "/search-products"],
+            ["Diplay Product", "/display"],
             ["Active orders", "/active-orders"],
             ["Pending orders", "/pending-orders"],
             ["Upload Records", "/upload-records"],
             ["User Management", "user-management"],
-            ["Search Products", "search-products"]
         ]
     
         this.itemNames2 = [
@@ -35,48 +36,20 @@ export default class CustomDrawer extends Component {
             ["Spam" , "/spam"]
         ]
 
-        this.state={
-          redirect: false
-        };
-
-        this.redirectURL = "/";
-
-        console.log("The state is :");
-        console.log(this.state.redirect)
-        console.log("I'm in Constructor.");
-
-    }
-
-    componentDidMount = () => {
-      console.log("I'm in Mount.");
-    }
-
-    componentDidUpdate = () => {
-      console.log("I'm in Update.");
-      // if (this.state.redirect){
-      //   this.setState({ redirect: false });    
-      // } 
     }
 
     handleOnClick1 = (i) => {
       let url = this.itemNames1[i][1];
-      this.redirectURL = url;
-      this.setState({ redirect: true });      
+      window.location.href = url;
     };
 
     handleonClick2 = (i) => {
       let url = this.itemNames2[i][1];
-      this.redirectURL = url;
-      this.setState({ redirect: true });     
+      window.location.href = url;
     }
 
   render() {
-    if (this.state.redirect){
-      console.log("I am TRUE");
-      return (<Navigate replace to = {this.redirectURL} />)
-    }
-    console.log("I am FALSE");    
-    
+
     return (
         <Drawer
         variant="permanent"

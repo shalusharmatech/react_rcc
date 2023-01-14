@@ -1,4 +1,4 @@
-import AuthService from '../settings/AuthUtils'
+import AuthService from '../../settings/AuthUtils'
 import { Navigate } from 'react-router-dom'
 import React, { Component } from 'react'
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SearchProductsAPI from '../Rest/SearchProductsAPI'
+import SearchProductsAPI from './SearchProductsAPI'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { Navigate } from 'react-router-dom';

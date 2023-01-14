@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import { API_URL } from '../settings/Constants'
+import { API_URL } from "../../settings/Constants";
 
-export default class ProductsAPI extends Component {
+export default class ChatAPI extends Component {
     constructor() {
         super();
     }

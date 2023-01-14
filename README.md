@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# Links
+
+* [React File Structure Best Practices - 1](https://reactjs.org/docs/faq-structure.html)
+* [React File Structure Best Practices - 2](https://www.tatvasoft.com/blog/reactjs-best-practices/)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { API_URL } from '../settings/Constants';
+import { API_URL } from "../../settings/Constants";
 
 export default class SearchProductsAPI extends Component {
     constructor(){

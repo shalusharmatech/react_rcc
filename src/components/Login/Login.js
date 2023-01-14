@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Snackbar from '@mui/material/Snackbar';
-import AuthAPI from "../Rest/AuthAPI";
+import LoginAPI from "./LoginAPI";
 import { useNavigate, Navigate } from "react-router-dom";
-import AuthService from "../settings/AuthUtils";
+import AuthService from "../../settings/AuthUtils";
 
 
 export default class Login extends Component {
@@ -57,9 +57,9 @@ export default class Login extends Component {
     console.log(this.state.password);
 
     try {
-      const authAPI = new AuthAPI();
+      const loginAPI = new LoginAPI();
       const auth = new AuthService();
-      let response = await authAPI.authenticateUser(this.state.username, this.state.password);
+      let response = await loginAPI.authenticateUser(this.state.username, this.state.password);
       console.log(response);
       if (response.status === 200) {
         console.log("Login Success");

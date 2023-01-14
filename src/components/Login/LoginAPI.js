@@ -1,7 +1,7 @@
 import axios from "axios";
-import { API_URL } from "../settings/Constants";
+import { API_URL } from "../../settings/Constants";
 
-export default class AuthAPI {
+export default class LoginAPI {
     
     constructor() {
 
